@@ -1,6 +1,10 @@
+// Arquivo: main.ts (Ponto de Entrada do Cliente)
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { AppComponent } from './app/app.component';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+// Correção para erro NG0401 em ambientes híbridos (Vite/SSR)
+if (typeof window !== 'undefined') {
+  bootstrapApplication(AppComponent, appConfig)
+    .catch((err) => console.error(err));
+}

@@ -1,4 +1,4 @@
-// --- Arquivo: Componente de Cabeçalho/Header (Layout) ---
+// Arquivo: header.component.ts (Componente Standalone)
 import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,97 +8,101 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <!-- Topo Institucional (Links úteis) -->
-    <div class="bg-gray-100 text-xs text-gray-500 py-1 px-4 hidden md:block">
+    <!-- Topo Institucional -->
+    <div class="bg-gray-100 text-[11px] text-gray-500 py-1 px-4 hidden md:block border-b border-gray-200">
       <div class="container mx-auto flex justify-between">
         <div class="flex gap-4">
-          <span class="cursor-pointer hover:underline">Nossas lojas</span>
-          <span class="cursor-pointer hover:underline">Tenha sua loja</span>
+          <a href="#" class="hover:underline hover:text-magalu-blue">Nossas lojas</a>
+          <a href="#" class="hover:underline hover:text-magalu-blue">Tenha sua loja</a>
         </div>
         <div class="flex gap-4">
-          <span class="cursor-pointer hover:underline">Regulamentos</span>
-          <span class="cursor-pointer hover:underline">Acessibilidade</span>
+          <a href="#" class="hover:underline hover:text-magalu-blue"><i class="fas fa-wheelchair"></i> Acessibilidade</a>
+          <a href="#" class="hover:underline hover:text-magalu-blue">Ajuda</a>
         </div>
       </div>
     </div>
 
-    <!-- Header Principal (Busca e Logo) -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-500 text-white sticky top-0 z-50 shadow-md">
-      <div class="container mx-auto px-4 py-3 md:py-4">
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-blue-700 to-magalu-blue text-white sticky top-0 z-50 shadow-lg">
+      <div class="container mx-auto px-4 py-3 md:py-5">
         <div class="flex items-center justify-between gap-4 md:gap-8">
           
-          <!-- Logo e Menu Hambúrguer (Mobile) -->
-          <div class="flex items-center gap-3">
-            <button class="md:hidden text-white text-2xl">
-              <i class="fas fa-bars"></i>
-            </button>
-            <h1 class="font-bold text-2xl tracking-tighter cursor-pointer flex items-center gap-1 group/logo select-none">
-              <div class="relative flex items-center">
-                <span class="text-white">Lojinha</span>
-                <span class="bg-yellow-400 text-blue-700 px-2 py-0.5 rounded transform -skew-x-6 text-sm md:text-lg font-black shadow-sm ml-1 group-hover/logo:rotate-3 transition-transform">App</span>
-              </div>
+          <!-- Logo -->
+          <div class="flex items-center gap-4">
+            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+            <h1 class="font-black text-2xl md:text-3xl tracking-tighter cursor-pointer flex items-center select-none group">
+              <span>Lojinha</span>
+              <div class="w-3 h-3 bg-magalu-yellow rounded-full ml-1 mt-3 animate-bounce"></div>
             </h1>
           </div>
 
-          <!-- Barra de Busca Central (Desktop) -->
-          <div class="hidden md:flex flex-1 max-w-2xl relative group">
+          <!-- Barra de Busca -->
+          <div class="hidden md:flex flex-1 max-w-3xl relative">
             <input 
               type="text" 
-              placeholder="O que você procura na Lojinha hoje?" 
+              placeholder="Procure por código, nome, marca..." 
               [(ngModel)]="searchText"
               (keyup.enter)="onSearch()"
-              class="w-full py-2.5 px-4 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 shadow-inner border-0"
+              class="w-full py-3 pl-5 pr-12 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-magalu-yellow shadow-inner text-sm"
             />
-            <button (click)="onSearch()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors">
+            <button (click)="onSearch()" class="absolute right-2 top-1/2 -translate-y-1/2 text-magalu-blue hover:bg-gray-100 p-2 rounded-full transition-colors">
               <i class="fas fa-search text-lg"></i>
             </button>
           </div>
 
-          <!-- Área do Usuário e Carrinho -->
+          <!-- Ícones e Menu -->
           <div class="flex items-center gap-6">
-            <div class="hidden md:block text-sm text-center cursor-pointer hover:bg-blue-600/50 p-1 rounded transition">
-              <p class="font-normal text-xs opacity-90">Bem-vindo :)</p>
-              <p class="font-bold text-xs">Entre ou cadastre-se</p>
+            <!-- Usuário -->
+            <div class="hidden md:flex items-center gap-2 cursor-pointer hover:bg-white/10 p-2 rounded transition">
+              <i class="far fa-user-circle text-2xl opacity-80"></i>
+              <div class="text-xs leading-tight">
+                <p>Bem-vindo :)</p>
+                <p class="font-bold">Entre ou cadastre-se</p>
+              </div>
             </div>
             
-            <div class="cursor-pointer relative hover:opacity-80 transition" title="Favoritos">
-               <i class="fas fa-heart text-2xl"></i>
+            <!-- Favoritos -->
+            <div class="cursor-pointer hover:opacity-80 transition relative group">
+               <i class="far fa-heart text-2xl"></i>
+               <span class="opacity-0 group-hover:opacity-100 absolute -bottom-8 -left-2 text-[10px] bg-gray-800 text-white px-2 py-1 rounded whitespace-nowrap transition-opacity">Favoritos</span>
             </div>
 
-            <div class="cursor-pointer relative hover:opacity-80 transition flex items-center gap-2 border border-white/30 p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40" title="Carrinho">
-               <i class="fas fa-shopping-bag text-2xl"></i>
+            <!-- Carrinho -->
+            <div class="cursor-pointer hover:opacity-80 transition flex items-center gap-2 border border-white/20 p-2 rounded-lg bg-white/5 hover:bg-white/10">
+               <div class="relative">
+                 <i class="fas fa-shopping-basket text-xl"></i>
+                 <span *ngIf="cartCount() > 0" class="absolute -top-2 -right-2 bg-magalu-yellow text-blue-900 text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full shadow-sm">
+                   {{ cartCount() }}
+                 </span>
+               </div>
                <span class="hidden md:block text-sm font-bold">Cesta</span>
-               <!-- Badge de Contador do Carrinho -->
-               <span *ngIf="cartCount() > 0" class="absolute -top-2 -right-2 bg-yellow-400 text-blue-900 text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm animate-bounce-short">
-                 {{ cartCount() }}
-               </span>
             </div>
           </div>
         </div>
 
-        <!-- Barra de Busca (Mobile) -->
+        <!-- Busca Mobile -->
         <div class="md:hidden mt-3 relative">
            <input 
              type="text" 
-             placeholder="Procure por código, nome, marca..." 
+             placeholder="Procure por produtos..." 
              [(ngModel)]="searchText"
              (keyup.enter)="onSearch()"
-             class="w-full py-2 px-4 rounded text-sm text-gray-800 border-0 shadow-inner"
+             class="w-full py-2.5 pl-4 pr-10 rounded text-sm text-gray-800 border-0 shadow-inner"
            >
-           <i class="fas fa-search absolute right-3 top-2.5 text-gray-400" (click)="onSearch()"></i>
+           <i class="fas fa-search absolute right-3 top-3 text-gray-400" (click)="onSearch()"></i>
         </div>
       </div>
-
-      <!-- Barra de Categorias -->
-      <nav class="bg-blue-700 text-white py-2 hidden md:block border-t border-blue-400/30">
-        <div class="container mx-auto px-4 flex justify-between text-sm font-medium overflow-x-auto no-scrollbar">
-          <a href="#" class="hover:underline whitespace-nowrap px-2">Todos os departamentos</a>
-          <a href="#" class="hover:underline whitespace-nowrap px-2">Celulares</a>
-          <a href="#" class="hover:underline whitespace-nowrap px-2">Móveis</a>
-          <a href="#" class="hover:underline whitespace-nowrap px-2">Eletrodomésticos</a>
-          <a href="#" class="hover:underline whitespace-nowrap px-2">TV e Vídeo</a>
-          <a href="#" class="hover:underline whitespace-nowrap px-2">Informática</a>
-          <a href="#" class="hover:text-yellow-300 whitespace-nowrap px-2 font-bold">Ofertas da Lojinha</a>
+      
+      <!-- Categorias -->
+      <nav class="bg-magalu-darkBlue text-white py-2 hidden md:block border-t border-white/10">
+        <div class="container mx-auto px-4 flex justify-between text-xs font-bold uppercase tracking-wide overflow-x-auto no-scrollbar">
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">Todos os departamentos</a>
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">Celulares</a>
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">Móveis</a>
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">Eletrodomésticos</a>
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">TV e Vídeo</a>
+          <a href="#" class="hover:text-magalu-yellow whitespace-nowrap px-3 py-1 transition">Informática</a>
+          <a href="#" class="text-magalu-yellow hover:text-white whitespace-nowrap px-3 py-1 transition bg-white/10 rounded">Ofertas do Dia</a>
         </div>
       </nav>
     </header>
@@ -106,7 +110,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class HeaderComponent {
   searchText = '';
-  // Sinais (Signals) para input reativo
   @Input() cartCount = signal(0);
   @Output() search = new EventEmitter<string>();
 

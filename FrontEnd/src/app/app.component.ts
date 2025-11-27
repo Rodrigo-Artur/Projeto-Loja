@@ -11,8 +11,7 @@ import { Product } from './core/models/product.model';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, HeaderComponent, ProductCardComponent],
-  templateUrl: './app.html',
-  styleUrls: ['./app.css'] // Se você não tiver app.component.css, pode remover esta linha ou criar o arquivo vazio
+  templateUrl: './app.component.html';
 })
 export class AppComponent {
   productService = inject(ProductService);

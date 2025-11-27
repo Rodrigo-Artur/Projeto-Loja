@@ -1,9 +1,9 @@
-// --- Arquivo: Modelo de Dados (Interface TypeScript) ---
+// Arquivo: product.model.ts (Interface de Modelo)
 export interface Product {
   id: number;
   title: string;
   price: number;
-  oldPrice?: number; // Preço "De" (opcional)
+  oldPrice?: number;
   installments: string;
   image: string;
   category: string;

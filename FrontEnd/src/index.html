@@ -1,16 +1,44 @@
+<!-- Arquivo: index.html (Arquivo Raiz da Aplicação) -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Lojinha</title>
+  <title>Lojinha - Ofertas Imperdíveis</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Adicionando FontAwesome para ícones e Fonte Inter (padrão moderno) -->
-  <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
-  <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap)" rel="stylesheet">
+  
+  <!-- Fonte Inter (Padrão Moderno) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome (Ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS (CDN para desenvolvimento rápido) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuração das cores da Lojinha no Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            magalu: {
+              blue: '#0086FF',
+              darkBlue: '#0045e6',
+              yellow: '#FFCE00',
+              green: '#00D600'
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
   <app-root></app-root>
 </body>
 </html>

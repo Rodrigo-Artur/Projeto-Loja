@@ -1,8 +1,10 @@
-import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
-import { App } from './app/app';
-import { config } from './app/app.config.server';
+// Arquivo: main.ts (Ponto de Entrada do Cliente)
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
 
-const bootstrap = (context: BootstrapContext) =>
-    bootstrapApplication(App, config, context);
-
-export default bootstrap;
+// Correção para erro NG0401 em ambientes híbridos (Vite/SSR)
+if (typeof window !== 'undefined') {
+  bootstrapApplication(AppComponent, appConfig)
+    .catch((err) => console.error(err));
+}
